@@ -10,6 +10,22 @@ List<ContractorRecord> contractors =
     new(4, "XYZ Inc", "Bob Smith")
 ];
 
+do
+{ 
+    Console.WriteLine("What name should we look up: "); 
+    string nameToLookUp = Console.ReadLine();
+    
+    IWorker worker = LookUpWorker(nameToLookUp);
+
+    string message = $"Name: {worker.Name}";
+    Console.WriteLine(message);
+
+    Console.ReadLine();
+    Console.Clear();
+    
+} while (1 == 1);
+
+
 IWorker LookUpWorker(string name)
 {
     EmployeeRecord? e = employees.Where(x => string.Compare(x.Name, name) == 0).FirstOrDefault();
