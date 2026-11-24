@@ -30,19 +30,21 @@ do
     Console.ReadLine();
     Console.Clear();
     
-} while (1 == 1);
+} while (true);
 
 
 Worker LookUpWorker(string name)
 {
-    EmployeeRecord? e = employees.Where(x => string.Compare(x.Name, name) == 0).FirstOrDefault();
+    EmployeeRecord? e = employees.FirstOrDefault(x => string
+        .Compare(x.Name, name, StringComparison.Ordinal) == 0);
 
     if (e is not null)
     {
         return e;
     }
     
-    ContractorRecord? c = contractors.Where(x => string.Compare(x.Name, name) == 0).FirstOrDefault();
+    ContractorRecord? c = contractors.FirstOrDefault(x => string
+        .Compare(x.Name, name, StringComparison.Ordinal) == 0);
 
     if (c is not null)
     {
