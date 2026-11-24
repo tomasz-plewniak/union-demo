@@ -21,6 +21,7 @@ do
     {
         EmployeeRecord employee => $"{employee.EmployeeId}: {employee.Name}",
         ContractorRecord contractor => $"{contractor.ContractorId}: {contractor.Name} from {contractor.Company}",
+        DemoRecord demo => demo.Test,
         string s => s
     };
     
@@ -48,10 +49,10 @@ Worker LookUpWorker(string name)
         return c;
     }
 
-    return "Worker not found";
+    return new DemoRecord("Worker not found");
 }
 
-union Worker(EmployeeRecord, ContractorRecord, string);
+union Worker(EmployeeRecord, ContractorRecord, DemoRecord, string);
 
 /*record EmployeeRecord(int EmployeeId, string Name) : IWorker;
 record ContractorRecord(int ContractorId, string Company, string Name) : IWorker;
@@ -63,3 +64,4 @@ interface IWorker
 
 record EmployeeRecord(int EmployeeId, string Name);
 record ContractorRecord(string ContractorId, string Company, string Name);
+record DemoRecord(string Test);
