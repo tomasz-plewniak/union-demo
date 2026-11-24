@@ -15,7 +15,7 @@ do
     Console.WriteLine("What name should we look up: "); 
     string nameToLookUp = Console.ReadLine();
     
-    IWorker worker = LookUpWorker(nameToLookUp);
+    Worker worker = LookUpWorker(nameToLookUp);
 
     string message = $"Name: {worker.Name}";
     Console.WriteLine(message);
@@ -26,7 +26,7 @@ do
 } while (1 == 1);
 
 
-IWorker LookUpWorker(string name)
+Worker LookUpWorker(string name)
 {
     EmployeeRecord? e = employees.Where(x => string.Compare(x.Name, name) == 0).FirstOrDefault();
 
@@ -45,10 +45,15 @@ IWorker LookUpWorker(string name)
     throw new Exception("Worker not found");
 }
 
-record EmployeeRecord(int EmployeeId, string Name) : IWorker;
+union Worker(EmployeeRecord, ContractorRecord, string);
+
+/*record EmployeeRecord(int EmployeeId, string Name) : IWorker;
 record ContractorRecord(int EmployeeId, string Company, string Name) : IWorker;
 
 interface IWorker
 {
     string Name { get; }
-}
+}*/
+
+record EmployeeRecord(int EmployeeId, string Name);
+record ContractorRecord(int EmployeeId, string Company, string Name);
